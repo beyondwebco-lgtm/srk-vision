@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { PORTFOLIO_ITEMS } from "@/data/content";
 import { ArrowUpRight } from "lucide-react";
+import PortfolioBeforeAfter from "@/components/PortfolioBeforeAfter";
 
 const CATEGORIES = [
   "All Work",
@@ -26,7 +27,7 @@ export default function PortfolioPage() {
 
   return (
     <div className="pt-28 md:pt-36 bg-[#F8F5F0] text-[#727272] min-h-screen">
-      <div className="max-w-[1340px] mx-auto px-6 sm:px-10 lg:px-12 pb-24">
+      <div className="max-w-[1340px] mx-auto px-6 sm:px-10 lg:px-12 pb-20">
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-12">
           <span className="text-xs uppercase tracking-[0.25em] text-[#CE986C] font-semibold">
@@ -102,6 +103,9 @@ export default function PortfolioPage() {
           ))}
         </div>
       </div>
+
+      {/* Interactive Before & After comparison section added only to the Portfolio page */}
+      <PortfolioBeforeAfter />
     </div>
   );
 }
