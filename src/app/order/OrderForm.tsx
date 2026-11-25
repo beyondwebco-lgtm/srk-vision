@@ -12,14 +12,11 @@ function OrderFormContent() {
 
   const [formData, setFormData] = useState({
     fullName: "",
-    companyName: "",
-    email: "",
     phone: "",
-    country: "India",
+    email: "",
     services: initialService ? [initialService] : [] as string[],
-    imageCount: "100-300 Images",
+    imageCount: "100-300 Photographs",
     deliveryDate: "",
-    editingStyle: "Warm, Timeless Editorial",
     driveLink: "",
     additionalNotes: "",
     consent: false,
@@ -48,15 +45,12 @@ function OrderFormContent() {
     const text = `*New Project Order - SRK Visions*
 ---------------------------------
 *Client:* ${formData.fullName}
-*Studio:* ${formData.companyName || "N/A"}
 *Email:* ${formData.email}
 *Phone:* ${formData.phone}
-*Country:* ${formData.country}
 *Services:* ${selectedTitles || "General Editing"}
-*Image Count:* ${formData.imageCount}
-*Required By:* ${formData.deliveryDate || "Standard"}
-*Style:* ${formData.editingStyle}
-*Drive Link:* ${formData.driveLink || "Will send separately"}
+*Photographs:* ${formData.imageCount}
+*Delivery Date:* ${formData.deliveryDate || "Standard"}
+*Drive / Reference:* ${formData.driveLink || "Will provide separately"}
 *Notes:* ${formData.additionalNotes || "None"}
 ---------------------------------`;
 
@@ -68,7 +62,7 @@ function OrderFormContent() {
     setErrorMsg("");
 
     if (!formData.consent) {
-      setErrorMsg("Please accept the privacy terms to submit your project brief.");
+      setErrorMsg("Please accept the terms to proceed.");
       return;
     }
 
@@ -80,74 +74,66 @@ function OrderFormContent() {
     setIsSubmitting(true);
 
     try {
-      // Post to our API route
-      const res = await fetch("/api/order", {
+      await fetch("/api/order", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
 
-      if (!res.ok) {
-        throw new Error("Failed to send order brief. You can still submit directly via WhatsApp!");
-      }
-
       setIsSubmitting(false);
       setSubmitted(true);
 
-      // Trigger celebratory confetti for premium UX
       try {
         confetti({
-          particleCount: 80,
-          spread: 70,
+          particleCount: 70,
+          spread: 60,
           origin: { y: 0.6 },
-          colors: ["#B49A78", "#171717", "#EDE9E2"],
+          colors: ["#6B1E35", "#CE986C", "#F6EFE6"],
         });
       } catch {
-        // Confetti non-fatal
+        // Confetti non-critical
       }
-    } catch (err: unknown) {
+    } catch {
       setIsSubmitting(false);
-      // In case server mail isn't configured, we still allow immediate seamless WhatsApp transmission
       setSubmitted(true);
-      console.warn("Server email fallback trigger:", err);
     }
   };
 
   if (submitted) {
     return (
-      <div className="bg-[#EDE9E2] p-8 md:p-16 border border-[#171717]/10 max-w-3xl mx-auto text-center space-y-6">
-        <div className="w-16 h-16 rounded-full bg-[#171717] text-[#B49A78] flex items-center justify-center mx-auto">
+      <div className="bg-[#F5EEE5] p-8 sm:p-12 md:p-16 rounded-[24px] border border-[#E8CDB4] max-w-2xl mx-auto text-center space-y-6">
+        <div className="w-16 h-16 rounded-full bg-[#6B1E35] text-[#CE986C] flex items-center justify-center mx-auto">
           <CheckCircle2 className="w-8 h-8" />
         </div>
 
-        <span className="text-xs uppercase tracking-[0.25em] text-[#B49A78] font-semibold block">
-          Order Specification Received
+        <span className="text-xs uppercase tracking-[0.25em] text-[#CE986C] font-semibold block">
+          Order Received
         </span>
 
-        <h2 className="font-editorial text-4xl sm:text-5xl font-light text-[#171717]">
+        <h2 className="font-cinzel text-3xl sm:text-4xl font-bold text-[#6B1E35]">
           Thank You, {formData.fullName}.
         </h2>
 
-        <p className="text-base text-[#737373] font-light max-w-lg mx-auto leading-relaxed">
-          Your project brief has been logged. Our studio lead in Hyderabad will inspect your specifications and drive links and respond to {formData.email} promptly.
+        <p className="font-quicksand text-base text-[#727272] max-w-md mx-auto">
+          Your project specifications have been submitted. Our team will review the details and respond to {formData.email} shortly.
         </p>
 
-        <div className="pt-6 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
           <a
             href={constructWhatsAppMessage()}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 text-xs uppercase tracking-[0.2em] font-semibold bg-[#171717] text-white hover:bg-[#B49A78] transition-colors"
+            className="w-full sm:w-auto inline-flex items-center justify-center px-7 py-3 rounded-full bg-[#25D366] text-white font-quicksand font-bold text-xs uppercase tracking-wider shadow-sm hover:bg-[#20bd5a]"
           >
-            <MessageSquare className="w-4 h-4 mr-2 text-[#B49A78]" />
-            <span>Confirm Instant Delivery via WhatsApp</span>
+            <MessageSquare className="w-4 h-4 mr-2" />
+            <span>Send Details on WhatsApp</span>
           </a>
 
           <button
             onClick={() => setSubmitted(false)}
-            className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 text-xs uppercase tracking-[0.2em] font-semibold border border-[#171717]/30 text-[#171717] hover:border-[#171717]"
+            className="w-full sm:w-auto px-7 py-3 rounded-full border border-[#6B1E35] text-[#6B1E35] font-quicksand font-bold text-xs uppercase tracking-wider hover:bg-[#6B1E35] hover:text-white"
           >
-            Submit Another Project
+            Submit Another
           </button>
         </div>
       </div>
@@ -155,28 +141,26 @@ function OrderFormContent() {
   }
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
-      {/* Form Card */}
-      <div className="lg:col-span-8 bg-[#EDE9E2] p-8 md:p-12 border border-[#171717]/10">
-        <h2 className="font-editorial text-3xl font-light text-[#171717] mb-2">
-          Project Specification Form
+    <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14">
+      <div className="lg:col-span-8 bg-[#F5EEE5] p-8 sm:p-10 md:p-12 rounded-[24px] border border-[#E8CDB4] shadow-sm">
+        <h2 className="font-cinzel text-2xl sm:text-3xl font-bold text-[#6B1E35] mb-2">
+          Project Order Details
         </h2>
-        <p className="text-xs text-[#737373] font-light mb-8">
-          Please fill out the details below. Required fields are marked with an asterisk (*).
+        <p className="text-xs text-[#727272] mb-6 font-medium">
+          Fill in your photography requirements below.
         </p>
 
         {errorMsg && (
-          <div className="mb-6 p-4 bg-red-50 border border-red-200 text-red-700 text-xs flex items-center space-x-2">
+          <div className="mb-6 p-4 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs flex items-center space-x-2">
             <AlertCircle className="w-4 h-4 shrink-0" />
             <span>{errorMsg}</span>
           </div>
         )}
 
-        <form onSubmit={handleSubmit} className="space-y-8">
-          {/* Row 1: Client & Studio */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
             <div>
-              <label className="block text-xs uppercase tracking-wider text-[#171717] font-semibold mb-2">
+              <label className="block text-xs uppercase tracking-wider text-[#6B1E35] font-bold mb-1.5">
                 Full Name *
               </label>
               <input
@@ -186,31 +170,29 @@ function OrderFormContent() {
                 onChange={(e) =>
                   setFormData({ ...formData, fullName: e.target.value })
                 }
-                placeholder="e.g. Vikramaditya Rao"
-                className="w-full px-4 py-3 bg-[#F8F7F4] border border-[#171717]/15 text-sm focus:outline-none focus:border-[#B49A78]"
+                placeholder="e.g. Arun Sharma"
+                className="w-full px-4 py-2.5 rounded-xl bg-white border border-[#E8CDB4] text-sm focus:outline-none focus:border-[#6B1E35]"
               />
             </div>
 
             <div>
-              <label className="block text-xs uppercase tracking-wider text-[#171717] font-semibold mb-2">
-                Studio / Company Name (Optional)
+              <label className="block text-xs uppercase tracking-wider text-[#6B1E35] font-bold mb-1.5">
+                Phone Number *
               </label>
               <input
-                type="text"
-                value={formData.companyName}
+                type="tel"
+                required
+                value={formData.phone}
                 onChange={(e) =>
-                  setFormData({ ...formData, companyName: e.target.value })
+                  setFormData({ ...formData, phone: e.target.value })
                 }
-                placeholder="e.g. Rao Photography Studios"
-                className="w-full px-4 py-3 bg-[#F8F7F4] border border-[#171717]/15 text-sm focus:outline-none focus:border-[#B49A78]"
+                placeholder="+91 98765 43210"
+                className="w-full px-4 py-2.5 rounded-xl bg-white border border-[#E8CDB4] text-sm focus:outline-none focus:border-[#6B1E35]"
               />
             </div>
-          </div>
 
-          {/* Row 2: Contact Info */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
             <div>
-              <label className="block text-xs uppercase tracking-wider text-[#171717] font-semibold mb-2">
+              <label className="block text-xs uppercase tracking-wider text-[#6B1E35] font-bold mb-1.5">
                 Email Address *
               </label>
               <input
@@ -220,50 +202,17 @@ function OrderFormContent() {
                 onChange={(e) =>
                   setFormData({ ...formData, email: e.target.value })
                 }
-                placeholder="client@studio.com"
-                className="w-full px-4 py-3 bg-[#F8F7F4] border border-[#171717]/15 text-sm focus:outline-none focus:border-[#B49A78]"
-              />
-            </div>
-
-            <div>
-              <label className="block text-xs uppercase tracking-wider text-[#171717] font-semibold mb-2">
-                Phone / WhatsApp *
-              </label>
-              <input
-                type="tel"
-                required
-                value={formData.phone}
-                onChange={(e) =>
-                  setFormData({ ...formData, phone: e.target.value })
-                }
-                placeholder="+91 70324 24878"
-                className="w-full px-4 py-3 bg-[#F8F7F4] border border-[#171717]/15 text-sm focus:outline-none focus:border-[#B49A78]"
-              />
-            </div>
-
-            <div>
-              <label className="block text-xs uppercase tracking-wider text-[#171717] font-semibold mb-2">
-                Country *
-              </label>
-              <input
-                type="text"
-                required
-                value={formData.country}
-                onChange={(e) =>
-                  setFormData({ ...formData, country: e.target.value })
-                }
-                placeholder="India / USA / UK / UAE"
-                className="w-full px-4 py-3 bg-[#F8F7F4] border border-[#171717]/15 text-sm focus:outline-none focus:border-[#B49A78]"
+                placeholder="arun@studio.com"
+                className="w-full px-4 py-2.5 rounded-xl bg-white border border-[#E8CDB4] text-sm focus:outline-none focus:border-[#6B1E35]"
               />
             </div>
           </div>
 
-          {/* Multi-select Services */}
           <div>
-            <label className="block text-xs uppercase tracking-wider text-[#171717] font-semibold mb-2">
+            <label className="block text-xs uppercase tracking-wider text-[#6B1E35] font-bold mb-2">
               Required Services (Select one or multiple) *
             </label>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {SERVICES.map((s) => {
                 const selected = formData.services.includes(s.slug);
                 return (
@@ -271,21 +220,23 @@ function OrderFormContent() {
                     type="button"
                     key={s.id}
                     onClick={() => handleServiceToggle(s.slug)}
-                    className={`p-3.5 text-left border transition-all duration-200 flex items-center justify-between ${
+                    className={`p-3 rounded-xl text-left border transition-all duration-200 flex items-center justify-between ${
                       selected
-                        ? "bg-[#171717] text-white border-[#171717]"
-                        : "bg-[#F8F7F4] text-[#171717] border-[#171717]/15 hover:border-[#171717]/40"
+                        ? "bg-[#6B1E35] text-white border-[#6B1E35]"
+                        : "bg-white text-[#727272] border-[#E8CDB4] hover:border-[#6B1E35]"
                     }`}
                   >
-                    <span className="text-xs tracking-wider">{s.title}</span>
+                    <span className="text-xs font-quicksand font-bold tracking-wide">
+                      {s.title}
+                    </span>
                     <span
-                      className={`text-xs px-2 py-0.5 rounded font-mono ${
+                      className={`text-[10px] px-2 py-0.5 rounded font-mono ${
                         selected
-                          ? "bg-[#B49A78] text-white"
-                          : "text-[#737373] bg-[#EDE9E2]"
+                          ? "bg-[#CE986C] text-white"
+                          : "text-[#727272] bg-[#F5EEE5]"
                       }`}
                     >
-                      {selected ? "Selected" : "Add"}
+                      {selected ? "Selected" : "Select"}
                     </span>
                   </button>
                 );
@@ -293,30 +244,29 @@ function OrderFormContent() {
             </div>
           </div>
 
-          {/* Row 3: Image Volume & Delivery Date */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
             <div>
-              <label className="block text-xs uppercase tracking-wider text-[#171717] font-semibold mb-2">
-                Approximate Image Count
+              <label className="block text-xs uppercase tracking-wider text-[#6B1E35] font-bold mb-1.5">
+                Number of Photographs
               </label>
               <select
                 value={formData.imageCount}
                 onChange={(e) =>
                   setFormData({ ...formData, imageCount: e.target.value })
                 }
-                className="w-full px-4 py-3 bg-[#F8F7F4] border border-[#171717]/15 text-sm focus:outline-none focus:border-[#B49A78]"
+                className="w-full px-4 py-2.5 rounded-xl bg-white border border-[#E8CDB4] text-sm focus:outline-none focus:border-[#6B1E35]"
               >
-                <option>1 – 15 Images (Hero / Flagship Portraits)</option>
-                <option>16 – 100 Images (Editorial / Commercial)</option>
-                <option>100 – 300 Images (Standard Event)</option>
-                <option>300 – 800 Images (Single Wedding Day)</option>
-                <option>800 – 2,000+ Images (Multi-Day Wedding Collection)</option>
-                <option>Album Spread (20 – 60 Pages)</option>
+                <option>1 – 15 Photographs (Portraits / Hero)</option>
+                <option>16 – 100 Photographs</option>
+                <option>100 – 300 Photographs</option>
+                <option>300 – 800 Photographs</option>
+                <option>800 – 2,000+ Photographs (Full Wedding)</option>
+                <option>Album Spread (20 – 60 Spreads)</option>
               </select>
             </div>
 
             <div>
-              <label className="block text-xs uppercase tracking-wider text-[#171717] font-semibold mb-2">
+              <label className="block text-xs uppercase tracking-wider text-[#6B1E35] font-bold mb-1.5">
                 Required Delivery Date
               </label>
               <input
@@ -325,158 +275,109 @@ function OrderFormContent() {
                 onChange={(e) =>
                   setFormData({ ...formData, deliveryDate: e.target.value })
                 }
-                className="w-full px-4 py-3 bg-[#F8F7F4] border border-[#171717]/15 text-sm focus:outline-none focus:border-[#B49A78]"
+                className="w-full px-4 py-2.5 rounded-xl bg-white border border-[#E8CDB4] text-sm focus:outline-none focus:border-[#6B1E35]"
               />
-            </div>
-
-            <div>
-              <label className="block text-xs uppercase tracking-wider text-[#171717] font-semibold mb-2">
-                Preferred Editing Style
-              </label>
-              <select
-                value={formData.editingStyle}
-                onChange={(e) =>
-                  setFormData({ ...formData, editingStyle: e.target.value })
-                }
-                className="w-full px-4 py-3 bg-[#F8F7F4] border border-[#171717]/15 text-sm focus:outline-none focus:border-[#B49A78]"
-              >
-                <option>Warm, Timeless Editorial (SRK Signature)</option>
-                <option>True-to-Life Natural & Crisp</option>
-                <option>Muted Film / Fine-Art Grain</option>
-                <option>High-Glamour / Beauty Polish</option>
-                <option>Custom Style (Reference Provided in Link)</option>
-              </select>
             </div>
           </div>
 
-          {/* Cloud Storage Link */}
           <div>
-            <label className="block text-xs uppercase tracking-wider text-[#171717] font-semibold mb-1">
-              Google Drive / Dropbox / WeTransfer Link (Optional)
+            <label className="block text-xs uppercase tracking-wider text-[#6B1E35] font-bold mb-1">
+              Reference Image / Cloud Storage Link
             </label>
-            <span className="text-[11px] text-[#737373] block mb-2">
-              Share a folder containing your RAW/TIFF selection or sample references with viewing permissions.
-            </span>
             <input
               type="url"
               value={formData.driveLink}
               onChange={(e) =>
                 setFormData({ ...formData, driveLink: e.target.value })
               }
-              placeholder="https://drive.google.com/drive/folders/..."
-              className="w-full px-4 py-3 bg-[#F8F7F4] border border-[#171717]/15 text-sm focus:outline-none focus:border-[#B49A78]"
+              placeholder="https://drive.google.com/..."
+              className="w-full px-4 py-2.5 rounded-xl bg-white border border-[#E8CDB4] text-sm focus:outline-none focus:border-[#6B1E35]"
             />
           </div>
 
-          {/* Additional Notes */}
           <div>
-            <label className="block text-xs uppercase tracking-wider text-[#171717] font-semibold mb-2">
-              Additional Instructions / Style Notes
+            <label className="block text-xs uppercase tracking-wider text-[#6B1E35] font-bold mb-1.5">
+              Additional Requirements
             </label>
             <textarea
-              rows={4}
+              rows={3}
               value={formData.additionalNotes}
               onChange={(e) =>
                 setFormData({ ...formData, additionalNotes: e.target.value })
               }
-              placeholder="Specify skin tones, camera models, aspect ratio requirements, or print lab dimensions..."
-              className="w-full px-4 py-3 bg-[#F8F7F4] border border-[#171717]/15 text-sm focus:outline-none focus:border-[#B49A78]"
+              placeholder="Specific skin tone preferences, camera models, album sizing..."
+              className="w-full px-4 py-2.5 rounded-xl bg-white border border-[#E8CDB4] text-sm focus:outline-none focus:border-[#6B1E35]"
             />
           </div>
 
-          {/* Privacy Consent Checkbox */}
-          <div className="flex items-start space-x-3 pt-2">
+          <div className="flex items-start space-x-3 pt-1">
             <input
               type="checkbox"
-              id="privacyConsent"
+              id="orderConsent"
               required
               checked={formData.consent}
               onChange={(e) =>
                 setFormData({ ...formData, consent: e.target.checked })
               }
-              className="mt-1 w-4 h-4 accent-[#171717]"
+              className="mt-1 w-4 h-4 accent-[#6B1E35]"
             />
             <label
-              htmlFor="privacyConsent"
-              className="text-xs text-[#737373] leading-relaxed cursor-pointer"
+              htmlFor="orderConsent"
+              className="text-xs text-[#727272] leading-relaxed cursor-pointer font-medium"
             >
-              I consent to SRK Visions reviewing my project details and contacting me regarding this project enquiry in accordance with the studio&apos;s privacy policy.
+              I agree to SRK Visions reviewing my project submission and contacting me.
             </label>
           </div>
 
-          {/* Submit Actions */}
-          <div className="pt-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4">
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full sm:w-auto inline-flex items-center justify-center px-10 py-4 text-xs uppercase tracking-[0.2em] font-semibold bg-[#171717] text-white hover:bg-[#B49A78] transition-colors"
+              className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 rounded-full bg-[#6B1E35] hover:bg-[#843B43] text-white text-xs font-quicksand font-bold uppercase tracking-wider shadow-sm transition-colors"
             >
-              <Send className="w-4 h-4 mr-2" />
-              <span>{isSubmitting ? "Submitting Brief..." : "Submit Project Order"}</span>
+              <Send className="w-3.5 h-3.5 mr-2" />
+              <span>{isSubmitting ? "Submitting..." : "Submit Enquiry"}</span>
             </button>
 
             <a
               href={constructWhatsAppMessage()}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-4 text-xs uppercase tracking-widest text-[#B49A78] hover:underline"
+              className="inline-flex items-center text-xs font-bold text-[#CE986C] hover:underline"
             >
-              <MessageSquare className="w-4 h-4 mr-2" />
-              <span>Instant WhatsApp Submission Alternative</span>
+              <MessageSquare className="w-4 h-4 mr-1.5" />
+              <span>Submit via WhatsApp instead &rarr;</span>
             </a>
           </div>
         </form>
       </div>
 
-      {/* Info Sidebar */}
       <div className="lg:col-span-4 flex flex-col space-y-6">
-        <div className="bg-[#111111] text-white p-8 space-y-6">
-          <div className="flex items-center space-x-2 text-[#B49A78]">
+        <div className="bg-[#6B1E35] text-white p-8 rounded-[24px] shadow-sm space-y-4">
+          <div className="flex items-center space-x-2 text-[#CE986C]">
             <Sparkles className="w-5 h-5" />
-            <span className="text-xs uppercase tracking-[0.25em] font-semibold">
-              The SRK Standard
+            <span className="font-cinzel text-xs uppercase tracking-widest font-bold">
+              SRK Assurance
             </span>
           </div>
 
-          <h3 className="font-editorial text-2xl font-light text-[#EDE9E2]">
-            What happens after you submit?
+          <h3 className="font-cinzel text-xl font-bold text-white">
+            What to expect
           </h3>
 
-          <ol className="space-y-4 text-xs text-neutral-300 font-light leading-relaxed list-decimal list-inside">
-            <li>
-              <strong className="text-white">Brief Review:</strong> A senior colorist reviews your references and drive link.
-            </li>
-            <li>
-              <strong className="text-white">Sample Calibration:</strong> We verify camera color profiles and provide 2-3 sample test frames if required.
-            </li>
-            <li>
-              <strong className="text-white">Full Batch Production:</strong> Once approved, the entire gallery enters production.
-            </li>
-            <li>
-              <strong className="text-white">Art Director Recheck:</strong> Independent QC review before final cloud delivery.
-            </li>
-          </ol>
+          <ul className="space-y-3 text-xs font-quicksand text-white/85 font-medium leading-relaxed">
+            <li>✦ Prompt brief analysis and test frame reviews</li>
+            <li>✦ Strict confidentiality under NDA</li>
+            <li>✦ Two-tier quality check on every frame</li>
+            <li>✦ High-resolution cloud handoff</li>
+          </ul>
         </div>
 
-        <div className="bg-[#EDE9E2] p-8 border border-[#171717]/10 space-y-4 text-xs text-[#737373]">
-          <p className="font-semibold uppercase tracking-wider text-[#171717]">
-            Direct Inquiries & Questions
-          </p>
-          <p>
-            Phone / WhatsApp:{" "}
-            <a href={`tel:${STUDIO_INFO.phoneRaw}`} className="text-[#171717] font-medium">
-              {STUDIO_INFO.phoneFormatted}
-            </a>
-          </p>
-          <p>
-            Email:{" "}
-            <a href={`mailto:${STUDIO_INFO.email}`} className="text-[#171717] font-medium">
-              {STUDIO_INFO.email}
-            </a>
-          </p>
-          <p>
-            Studio Base: Begumpet, Hyderabad, Telangana, India
-          </p>
+        <div className="bg-[#F5EEE5] p-6 rounded-[20px] border border-[#E8CDB4] text-xs text-[#727272] space-y-2">
+          <p className="font-bold text-[#6B1E35] uppercase">Direct Studio Support</p>
+          <p>Phone: +91 70324 24878</p>
+          <p>Email: srkvisions05@gmail.com</p>
+          <p>Begumpet, Hyderabad – 500016</p>
         </div>
       </div>
     </div>
@@ -485,7 +386,7 @@ function OrderFormContent() {
 
 export default function OrderForm() {
   return (
-    <Suspense fallback={<div className="p-12 text-center text-xs uppercase tracking-widest text-[#737373]">Loading Order Form...</div>}>
+    <Suspense fallback={<div className="p-8 text-center text-xs font-bold text-[#727272]">Loading...</div>}>
       <OrderFormContent />
     </Suspense>
   );

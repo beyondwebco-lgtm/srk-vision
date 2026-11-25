@@ -2,45 +2,33 @@ import HeroSection from "@/components/HeroSection";
 import ServicesMarquee from "@/components/ServicesMarquee";
 import AboutSection from "@/components/AboutSection";
 import ServicesSection from "@/components/ServicesSection";
-import BeforeAfterSection from "@/components/BeforeAfterSection";
-import PortfolioSection from "@/components/PortfolioSection";
 import WorkflowSection from "@/components/WorkflowSection";
 import TestimonialSection from "@/components/TestimonialSection";
 import InstagramShowcase from "@/components/InstagramShowcase";
-import FinalCtaSection from "@/components/FinalCtaSection";
 
 export default function HomePage() {
   return (
     <>
-      {/* 5. Full-viewport Hero */}
+      {/* Reference 2: Hero Section */}
       <HeroSection />
 
-      {/* 6. Animated Services Marquee */}
+      {/* Services Marquee */}
       <ServicesMarquee />
 
-      {/* 7. About Section with Statistics */}
+      {/* Reference 1: About Section */}
       <AboutSection />
 
-      {/* 8. Our Services Editorial Rows */}
+      {/* What We Do / Services Section */}
       <ServicesSection />
 
-      {/* 9. Interactive Before & After Comparison Slider */}
-      <BeforeAfterSection />
-
-      {/* 10. Curated Portfolio Masonry Gallery */}
-      <PortfolioSection isPreview={true} />
-
-      {/* 11. Professional 4-Step Workflow */}
+      {/* Reference 3: Workflow Section */}
       <WorkflowSection />
 
-      {/* 12. Client Experiences & Testimonial Carousel */}
+      {/* Testimonials Carousel */}
       <TestimonialSection />
 
-      {/* 13. Instagram Showcase */}
+      {/* Instagram 3-Grid Showcase */}
       <InstagramShowcase />
-
-      {/* 16. Final Dark Call-to-Action */}
-      <FinalCtaSection />
     </>
   );
 }

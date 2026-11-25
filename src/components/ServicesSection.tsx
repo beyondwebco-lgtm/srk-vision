@@ -1,124 +1,160 @@
 import React from "react";
-import Image from "next/image";
 import Link from "next/link";
-import { SERVICES } from "@/data/content";
-import { ArrowUpRight, Check } from "lucide-react";
+import { 
+  Palette, 
+  Sparkles, 
+  Filter, 
+  BookOpen, 
+  ArrowUpRight 
+} from "lucide-react";
+import { InstagramIcon } from "@/components/InstagramIcon";
+
+const SERVICES_DATA = [
+  {
+    id: "01",
+    slug: "colour-correction",
+    title: "Colour Correction",
+    icon: (props: { className?: string }) => <Palette {...props} />,
+    description:
+      "Our colour correction process enhances every image by adjusting exposure, brightness, contrast, white balance, and colour tones. We refine natural skin tones, balance highlights and shadows, and create a consistent visual finish across complete photo collections.",
+  },
+  {
+    id: "02",
+    slug: "high-end-retouch",
+    title: "High-End Retouch",
+    icon: (props: { className?: string }) => <Sparkles {...props} />,
+    description:
+      "Our high-end retouching process focuses on refining skin texture, removing blemishes, correcting imperfections, and enhancing facial details with precision. We carefully balance skin tones and perfect every detail while preserving natural beauty for a flawless, realistic, and luxurious finish.",
+  },
+  {
+    id: "03",
+    slug: "image-culling",
+    title: "Image Culling & Selection",
+    icon: (props: { className?: string }) => <Filter {...props} />,
+    description:
+      "Our professional image culling process involves carefully reviewing every photograph to identify the best moments, expressions, compositions, and overall image quality. We eliminate duplicates, blurred shots and unwanted images while selecting the finest photographs to ensure a consistent, well-organized final collection.",
+  },
+  {
+    id: "04",
+    slug: "instagram-postings",
+    title: "Instagram Social Media Postings",
+    icon: (props: { className?: string }) => <InstagramIcon {...props} />,
+    description:
+      "We create visually stunning Instagram posts that tell a unique story through creative layouts, elegant designs, and thoughtful storytelling. Every post is carefully crafted to capture emotions, highlight memorable moments, and deliver a premium visual experience.",
+  },
+  {
+    id: "05",
+    slug: "album-designing",
+    title: "Professional Album Designing",
+    icon: (props: { className?: string }) => <BookOpen {...props} />,
+    description:
+      "We create customized, professionally designed albums in the dimensions required by our clients. Our process includes basic colour correction, shadow adjustments, skin tone refinement, skin texture smoothing, and removal of distracting elements from wedding stage backgrounds.",
+  },
+];
 
 export default function ServicesSection() {
   return (
-    <section className="py-24 md:py-32 bg-[#F8F7F4] text-[#171717]">
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
+    <section className="py-20 md:py-28 bg-[#F5EEE5] text-[#727272]">
+      <div className="max-w-[1340px] mx-auto px-6 sm:px-10 lg:px-12">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-20 pb-8 border-b border-[#171717]/10">
-          <div>
-            <span className="text-xs uppercase tracking-[0.25em] text-[#B49A78] font-semibold">
-              WHAT WE DO
-            </span>
-            <h2 className="font-editorial text-4xl sm:text-5xl md:text-6xl font-light tracking-tight mt-2 text-[#171717]">
-              Expertise in Every Detail.
-            </h2>
-          </div>
-          <p className="mt-4 md:mt-0 text-sm md:text-base text-[#737373] max-w-md font-light leading-relaxed">
-            Five signature disciplines crafted for wedding photographers, commercial studios, and creative directors who refuse to compromise on visual standards.
-          </p>
+        <div className="text-center max-w-2xl mx-auto mb-16">
+          <span className="text-xs uppercase tracking-[0.25em] text-[#CE986C] font-semibold">
+            WHAT WE DO
+          </span>
+          <h2 className="font-cinzel text-3xl sm:text-4xl md:text-[44px] font-bold text-[#6B1E35] tracking-wide mt-2 uppercase">
+            Our Services
+          </h2>
+          <div className="w-16 h-[2px] bg-[#CE986C] mx-auto mt-4" />
         </div>
 
-        {/* Alternating Editorial Service Rows */}
-        <div className="flex flex-col space-y-28 md:space-y-36">
-          {SERVICES.map((service, index) => {
-            const isEven = index % 2 === 1;
-
+        {/* 5 Service Cards Grid: 3 in top row, 2 centered in bottom row */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {SERVICES_DATA.slice(0, 3).map((s) => {
+            const Icon = s.icon;
             return (
               <div
-                key={service.id}
-                className={`grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center ${
-                  isEven ? "lg:grid-flow-dense" : ""
-                }`}
+                key={s.id}
+                className="bg-[#F8F5F0] rounded-[20px] p-8 border border-[#E8CDB4] shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between group"
               >
-                {/* Image Column */}
-                <div
-                  className={`lg:col-span-6 relative ${
-                    isEven ? "lg:col-start-7" : ""
-                  }`}
-                >
-                  <div className="relative aspect-[4/3] sm:aspect-[16/11] w-full overflow-hidden bg-[#EDE9E2] shadow-lg group">
-                    <Image
-                      src={service.heroImage}
-                      alt={service.title}
-                      fill
-                      className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
-                      sizes="(max-width: 1024px) 100vw, 50vw"
-                    />
-                    <div className="absolute inset-0 bg-black/10 transition-opacity group-hover:opacity-0" />
+                <div>
+                  <div className="w-14 h-14 rounded-full bg-[#F5EEE5] border border-[#E8CDB4] flex items-center justify-center text-[#6B1E35] mb-6 group-hover:bg-[#6B1E35] group-hover:text-white transition-colors duration-300">
+                    <Icon className="w-6 h-6" />
                   </div>
 
-                  {/* Service Number Accent */}
-                  <span className="absolute -top-6 -left-4 sm:-left-8 font-editorial text-7xl sm:text-8xl font-light text-[#171717]/10 select-none pointer-events-none">
-                    {service.number}
-                  </span>
-                </div>
-
-                {/* Content Column */}
-                <div
-                  className={`lg:col-span-6 flex flex-col justify-center space-y-6 ${
-                    isEven ? "lg:col-start-1" : ""
-                  }`}
-                >
-                  <div className="flex items-center space-x-3">
-                    <span className="font-editorial text-xl font-normal text-[#B49A78]">
-                      {service.number}
-                    </span>
-                    <span className="w-8 h-[1px] bg-[#B49A78]" />
-                    <span className="text-xs uppercase tracking-[0.25em] text-[#737373]">
-                      Discipline
-                    </span>
-                  </div>
-
-                  <h3 className="font-editorial text-3xl sm:text-4xl font-light text-[#171717] tracking-tight">
-                    {service.title}
+                  <h3 className="font-cinzel text-xl sm:text-[22px] font-bold text-[#6B1E35] mb-3 leading-snug">
+                    {s.title}
                   </h3>
 
-                  <p className="text-base text-[#737373] font-light leading-relaxed">
-                    {service.fullDesc}
+                  <p className="font-quicksand text-sm sm:text-[15px] text-[#727272] leading-[1.75] font-medium">
+                    {s.description}
                   </p>
+                </div>
 
-                  {/* Bullet Highlights */}
-                  <div className="pt-2">
-                    <p className="text-xs uppercase tracking-[0.2em] text-[#171717] font-semibold mb-3">
-                      Core Inclusions:
-                    </p>
-                    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs text-[#171717]/85 font-light">
-                      {service.features.map((feature, fIdx) => (
-                        <li key={fIdx} className="flex items-center space-x-2">
-                          <Check className="w-3.5 h-3.5 text-[#B49A78] shrink-0" />
-                          <span>{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                <div className="pt-6 mt-6 border-t border-[#E8CDB4]/50 flex items-center justify-between">
+                  <Link
+                    href={`/services/${s.slug}`}
+                    className="text-xs uppercase tracking-widest text-[#6B1E35] font-bold inline-flex items-center hover:text-[#CE986C] transition-colors"
+                  >
+                    <span>View Details</span>
+                    <ArrowUpRight className="ml-1 w-3.5 h-3.5" />
+                  </Link>
 
-                  {/* CTAs */}
-                  <div className="pt-4 flex items-center space-x-6">
-                    <Link
-                      href={`/services/${service.slug}`}
-                      className="inline-flex items-center text-xs uppercase tracking-widest text-[#171717] hover:text-[#B49A78] font-semibold transition-colors group"
-                    >
-                      <span>View Details</span>
-                      <ArrowUpRight className="ml-1 w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                    </Link>
-
-                    <Link
-                      href={`/order?service=${service.slug}`}
-                      className="inline-flex items-center px-5 py-2 text-xs uppercase tracking-widest bg-[#171717] text-white hover:bg-[#B49A78] transition-colors"
-                    >
-                      <span>Enquire Now</span>
-                    </Link>
-                  </div>
+                  <Link
+                    href={`/order?service=${s.slug}`}
+                    className="text-xs uppercase tracking-wider px-3.5 py-1.5 rounded-full bg-[#6B1E35] text-white hover:bg-[#843B43] font-semibold transition-colors"
+                  >
+                    Enquire
+                  </Link>
                 </div>
               </div>
             );
           })}
         </div>
+
+        {/* Second Row: 2 cards centered */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-[880px] mx-auto mt-8">
+          {SERVICES_DATA.slice(3, 5).map((s) => {
+            const Icon = s.icon;
+            return (
+              <div
+                key={s.id}
+                className="bg-[#F8F5F0] rounded-[20px] p-8 border border-[#E8CDB4] shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between group"
+              >
+                <div>
+                  <div className="w-14 h-14 rounded-full bg-[#F5EEE5] border border-[#E8CDB4] flex items-center justify-center text-[#6B1E35] mb-6 group-hover:bg-[#6B1E35] group-hover:text-white transition-colors duration-300">
+                    <Icon className="w-6 h-6" />
+                  </div>
+
+                  <h3 className="font-cinzel text-xl sm:text-[22px] font-bold text-[#6B1E35] mb-3 leading-snug">
+                    {s.title}
+                  </h3>
+
+                  <p className="font-quicksand text-sm sm:text-[15px] text-[#727272] leading-[1.75] font-medium">
+                    {s.description}
+                  </p>
+                </div>
+
+                <div className="pt-6 mt-6 border-t border-[#E8CDB4]/50 flex items-center justify-between">
+                  <Link
+                    href={`/services/${s.slug}`}
+                    className="text-xs uppercase tracking-widest text-[#6B1E35] font-bold inline-flex items-center hover:text-[#CE986C] transition-colors"
+                  >
+                    <span>View Details</span>
+                    <ArrowUpRight className="ml-1 w-3.5 h-3.5" />
+                  </Link>
+
+                  <Link
+                    href={`/order?service=${s.slug}`}
+                    className="text-xs uppercase tracking-wider px-3.5 py-1.5 rounded-full bg-[#6B1E35] text-white hover:bg-[#843B43] font-semibold transition-colors"
+                  >
+                    Enquire
+                  </Link>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
       </div>
     </section>
   );

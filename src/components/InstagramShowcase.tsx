@@ -5,60 +5,64 @@ import { ArrowUpRight } from "lucide-react";
 import { InstagramIcon } from "@/components/InstagramIcon";
 
 export default function InstagramShowcase() {
+  // Show 3 Instagram images as required
+  const threeImages = INSTAGRAM_ITEMS.slice(0, 3);
+
   return (
-    <section className="py-24 md:py-32 bg-[#F8F7F4] text-[#171717]">
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
+    <section className="py-20 md:py-28 bg-[#F5EEE5] text-[#727272]">
+      <div className="max-w-[1340px] mx-auto px-6 sm:px-10 lg:px-12">
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-8 border-b border-[#171717]/10">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-14 pb-6 border-b border-[#E8CDB4]">
           <div>
-            <span className="text-xs uppercase tracking-[0.25em] text-[#B49A78] font-semibold">
+            <span className="text-xs uppercase tracking-[0.25em] text-[#CE986C] font-semibold">
               INSTAGRAM SHOWCASE
             </span>
-            <h2 className="font-editorial text-4xl sm:text-5xl md:text-6xl font-light tracking-tight mt-2 text-[#171717]">
-              Creativity Beyond the Frame.
+            <h2 className="font-cinzel text-3xl sm:text-4xl md:text-[44px] font-bold text-[#6B1E35] tracking-wide mt-2 uppercase">
+              Follow Us
             </h2>
           </div>
-          <div className="mt-4 md:mt-0 flex items-center space-x-4">
+
+          <div className="mt-4 sm:mt-0">
             <a
               href={STUDIO_INFO.instagramUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center space-x-2 px-6 py-2.5 text-xs uppercase tracking-widest font-semibold border border-[#171717] hover:bg-[#171717] hover:text-white transition-all duration-300"
+              className="inline-flex items-center space-x-2 text-xs uppercase tracking-wider font-bold text-[#6B1E35] hover:text-[#CE986C] transition-colors"
             >
-              <InstagramIcon className="w-3.5 h-3.5 text-[#B49A78]" />
-              <span>Follow {STUDIO_INFO.instagramHandle}</span>
+              <InstagramIcon className="w-4 h-4" />
+              <span>{STUDIO_INFO.instagramHandle}</span>
               <ArrowUpRight className="w-3.5 h-3.5" />
             </a>
           </div>
         </div>
 
-        {/* 6-Grid Editorial Photography Showcase */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-          {INSTAGRAM_ITEMS.map((item) => (
+        {/* 3 Instagram Grid Images */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          {threeImages.map((item) => (
             <a
               key={item.id}
               href={STUDIO_INFO.instagramUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative aspect-square overflow-hidden bg-[#EDE9E2] block"
+              className="group relative aspect-square rounded-[18px] overflow-hidden border border-[#E8CDB4] shadow-sm block bg-black"
             >
               <Image
                 src={item.image}
                 alt="SRK Visions Instagram Post"
                 fill
-                className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-110"
-                sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 16vw"
+                className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                sizes="(max-width: 640px) 100vw, 33vw"
               />
-              {/* Instagram Hover Icon & Dark Tint */}
-              <div className="absolute inset-0 bg-[#111111]/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center p-4 text-center text-white">
-                <InstagramIcon className="w-6 h-6 text-[#B49A78] mb-2" />
-                <span className="text-[10px] tracking-widest uppercase font-mono text-neutral-300">
-                  {item.likes} Likes
+              <div className="absolute inset-0 bg-[#6B1E35]/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center p-4 text-white text-center">
+                <InstagramIcon className="w-8 h-8 text-[#CE986C] mb-2" />
+                <span className="text-xs font-quicksand font-bold uppercase tracking-widest">
+                  View On Instagram
                 </span>
               </div>
             </a>
           ))}
         </div>
+
       </div>
     </section>
   );
