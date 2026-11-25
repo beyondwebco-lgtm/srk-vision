@@ -440,7 +440,7 @@ export const WORKFLOW_STEPS = [
 export const STUDIO_INFO = {
   name: "SRK Visions",
   tagline: "You Capture the Moment. We Perfect the Story.",
-  establishedYear: 2015,
+  establishedYear: 2021,
   phone: "+91 70324 24878",
   phoneFormatted: "+91 70324 24878",
   phoneRaw: "917032424878",
@@ -455,6 +455,6 @@ export const STUDIO_INFO = {
     { label: "Company Collaborations", value: "25+", note: "Leading wedding & studio partners" },
     { label: "Customer Satisfaction", value: "99.9%", note: "Verified client feedback" },
     { label: "Projects Delivered", value: "1,000+", note: "Across India & internationally" },
-    { label: "Established Year", value: "2015", note: "A decade of post-production mastery" },
+    { label: "Established Year", value: "2021", note: "Years of dedicated post-production mastery" },
   ]
 };

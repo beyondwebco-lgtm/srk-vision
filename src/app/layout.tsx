@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     template: "%s | SRK Visions",
   },
   description:
-    "SRK Visions — Established 2015 in Hyderabad. Professional photo post-production, colour correction, high-end retouching, image culling, and luxury album designing.",
+    "SRK Visions — Established 2021 in Hyderabad. Professional photo post-production, colour correction, high-end retouching, image culling, and luxury album designing.",
   keywords: [
     "Photo editing services in Hyderabad",
     "Professional photo post-production services",

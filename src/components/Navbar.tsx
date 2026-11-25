@@ -125,7 +125,7 @@ export default function Navbar() {
           </div>
 
           <div className="pt-6 border-t border-[#E8CDB4] text-xs text-[#727272] space-y-1">
-            <p className="font-semibold text-[#6B1E35]">SRK Visions · Est. 2015</p>
+            <p className="font-semibold text-[#6B1E35]">SRK Visions · Est. 2021</p>
             <p>Begumpet, Hyderabad – 500016</p>
             <p>+91 70324 24878</p>
           </div>

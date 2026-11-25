@@ -25,10 +25,10 @@ export default function AboutSection() {
           {/* Right Column: Content matching Screenshot 1 exactly */}
           <div className="lg:col-span-6 flex flex-col justify-center space-y-6">
             
-            {/* Small Pill Label: EST. 2015 */}
+            {/* Small Pill Label: EST. 2021 */}
             <div>
               <span className="inline-block px-4 py-1.5 rounded-full bg-[#F5EEE5] text-[#CE986C] border border-[#E8CDB4]/60 text-xs sm:text-[13px] font-quicksand font-bold tracking-widest uppercase">
-                EST. 2015
+                EST. 2021
               </span>
             </div>
 
