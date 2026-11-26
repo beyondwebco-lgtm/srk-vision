@@ -65,12 +65,20 @@
   animation: marquee 30s linear infinite;
 }
 
-.animate-marquee-smooth:hover {
+.animate-marquee-slow {
+  display: flex;
+  width: max-content;
+  animation: marquee 55s linear infinite;
+}
+
+.animate-marquee-smooth:hover,
+.animate-marquee-slow:hover {
   animation-play-state: paused;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .animate-marquee-smooth {
+  .animate-marquee-smooth,
+  .animate-marquee-slow {
     animation-play-state: paused;
   }
 }
