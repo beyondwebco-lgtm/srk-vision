@@ -7,18 +7,20 @@ import Image from "next/image";
 export default function HeroSection() {
   return (
     <section className="relative w-full h-[calc(100svh-10px)] min-h-[580px] max-h-[960px] flex items-center justify-center overflow-hidden bg-black text-white">
-      {/* Background Artwork: Exact reference artwork extracted from screenshot */}
-      <div className="absolute inset-0 z-0">
-        <Image
-          src="/assets/hero-bg.jpg"
-          alt="SRK Visions Cinematic Post-Production Artwork"
-          fill
-          priority
-          className="object-cover object-center select-none"
-          sizes="100vw"
-        />
-        {/* Black cinematic overlay (approx 45%) */}
-        <div className="absolute inset-0 bg-black/45" />
+      {/* Background Artwork: Floating gently up and down while text stays fixed */}
+      <div className="absolute -inset-4 sm:-inset-6 z-0 overflow-hidden pointer-events-none">
+        <div className="relative w-full h-full animate-hero-float">
+          <Image
+            src="/assets/hero-bg.webp"
+            alt="SRK Visions Cinematic Post-Production Artwork"
+            fill
+            priority
+            className="object-cover object-center select-none"
+            sizes="100vw"
+          />
+          {/* Black cinematic overlay (approx 45%) */}
+          <div className="absolute inset-0 bg-black/45" />
+        </div>
       </div>
 
       {/* Hero Content: Centered, 2-line Serif Heading, Subtitle, Caramel Button */}

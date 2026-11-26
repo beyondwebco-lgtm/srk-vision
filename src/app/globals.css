@@ -76,9 +76,26 @@
   animation-play-state: paused;
 }
 
+/* Floating gentle animation for hero background artwork */
+@keyframes hero-float {
+  0%, 100% {
+    transform: translateY(-14px) scale(1.06);
+  }
+  50% {
+    transform: translateY(14px) scale(1.06);
+  }
+}
+
+.animate-hero-float {
+  animation: hero-float 7.5s ease-in-out infinite;
+  will-change: transform;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-marquee-smooth,
-  .animate-marquee-slow {
+  .animate-marquee-slow,
+  .animate-hero-float {
     animation-play-state: paused;
+    animation: none;
   }
 }
