@@ -1,5 +1,4 @@
 import React from "react";
-import { ClipboardList, Palette, FileEdit, CheckCircle2 } from "lucide-react";
 
 export default function WorkflowSection() {
   const steps = [
@@ -9,9 +8,15 @@ export default function WorkflowSection() {
       description:
         "We organize your requirements, references, deadlines, and project details before editing begins.",
       icon: (
-        <div className="text-[#CE986C]">
-          <ClipboardList className="w-7 h-7" />
-        </div>
+        <svg className="w-8 h-8" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="6" y="5" width="20" height="23" rx="2.5" fill="#D99B6A" />
+          <rect x="8.5" y="8" width="15" height="18" rx="1.5" fill="#FFFFFF" />
+          <rect x="11" y="3.5" width="10" height="3.5" rx="1" fill="#A87349" />
+          <circle cx="16" cy="5.2" r="1" fill="#FFFFFF" />
+          <rect x="11" y="12" width="10" height="1.8" rx="0.9" fill="#E88B52" />
+          <rect x="11" y="16" width="10" height="1.8" rx="0.9" fill="#B0A090" />
+          <rect x="11" y="20" width="6.5" height="1.8" rx="0.9" fill="#B0A090" />
+        </svg>
       ),
     },
     {
@@ -20,9 +25,19 @@ export default function WorkflowSection() {
       description:
         "Our editor transforms your brief into a refined visual result while following your requested style.",
       icon: (
-        <div className="text-[#CE986C]">
-          <Palette className="w-7 h-7" />
-        </div>
+        <svg className="w-8 h-8" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M16 4C9.37 4 4 9.37 4 16C4 22.63 9.37 28 16 28C17.66 28 19 26.66 19 25C19 24.23 18.69 23.53 18.18 23.02C17.67 22.51 17.36 21.81 17.36 21.04C17.36 19.38 18.7 18.04 20.36 18.04H23C26.31 18.04 29 15.35 29 12.04C29 7.6 23.18 4 16 4Z"
+            fill="#FBE7D0"
+            stroke="#DCA675"
+            strokeWidth="1.2"
+          />
+          <circle cx="10" cy="13" r="2" fill="#E85D75" />
+          <circle cx="15" cy="9.5" r="2" fill="#F59E0B" />
+          <circle cx="21" cy="11.5" r="2" fill="#3B82F6" />
+          <circle cx="13" cy="22" r="1.8" fill="#10B981" />
+          <ellipse cx="23.5" cy="15" rx="1.8" ry="1.4" fill="#6B1E35" opacity="0.15" />
+        </svg>
       ),
     },
     {
@@ -31,9 +46,18 @@ export default function WorkflowSection() {
       description:
         "A separate reviewer checks details, consistency, colors, alignment, and visible editing errors.",
       icon: (
-        <div className="text-[#CE986C]">
-          <FileEdit className="w-7 h-7" />
-        </div>
+        <svg className="w-8 h-8" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="7" y="4" width="16" height="23" rx="2" fill="#FFFFFF" stroke="#C5B2A1" strokeWidth="1.2" />
+          <path d="M18 4L23 9H19.5C18.67 9 18 8.33 18 7.5V4Z" fill="#E2D4C6" />
+          <rect x="9.5" y="11" width="11" height="1.6" rx="0.8" fill="#A89B8E" />
+          <rect x="9.5" y="14.5" width="11" height="1.6" rx="0.8" fill="#A89B8E" />
+          <rect x="9.5" y="18" width="7" height="1.6" rx="0.8" fill="#A89B8E" />
+          <g transform="translate(14, 15) rotate(-35)">
+            <rect x="0" y="0" width="13" height="3.8" rx="1" fill="#E88B52" />
+            <path d="M13 0L17 1.9L13 3.8V0Z" fill="#2E231F" />
+            <rect x="0" y="0" width="3" height="3.8" rx="0.8" fill="#B0A090" />
+          </g>
+        </svg>
       ),
     },
     {
@@ -42,8 +66,10 @@ export default function WorkflowSection() {
       description:
         "We verify the final files against your requirements before preparing them for client delivery.",
       icon: (
-        <div className="text-[#25D366]">
-          <CheckCircle2 className="w-8 h-8" />
+        <div className="w-[32px] h-[32px] rounded-lg bg-[#27BE69] flex items-center justify-center shadow-sm">
+          <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+            <polyline points="20 6 9 17 4 12" />
+          </svg>
         </div>
       ),
     },

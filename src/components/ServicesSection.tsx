@@ -20,7 +20,7 @@ const SERVICES_DATA = [
   },
   {
     id: "02",
-    slug: "high-end-retouch",
+    slug: "high-end-retouching",
     title: "High-End Retouch",
     icon: (props: { className?: string }) => <Sparkles {...props} />,
     description:
@@ -36,7 +36,7 @@ const SERVICES_DATA = [
   },
   {
     id: "04",
-    slug: "instagram-postings",
+    slug: "instagram-designing",
     title: "Instagram Social Media Postings",
     icon: (props: { className?: string }) => <InstagramIcon {...props} />,
     description:

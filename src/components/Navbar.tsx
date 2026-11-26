@@ -46,7 +46,7 @@ export default function Navbar() {
 
           {/* Centre: Nav links with diamond separators (Exact Reference) */}
           <nav className="hidden md:flex items-center space-x-6 lg:space-x-8 text-[15px] lg:text-[16px] text-[#727272] font-quicksand font-medium">
-            {navLinks.map((item, idx) => {
+            {navLinks.map((item) => {
               const isActive = pathname === item.href;
               return (
                 <React.Fragment key={item.href}>

@@ -2,7 +2,7 @@
 
 import React, { useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
-import { SERVICES, STUDIO_INFO } from "@/data/content";
+import { SERVICES } from "@/data/content";
 import { CheckCircle2, MessageSquare, Send, Sparkles, AlertCircle } from "lucide-react";
 import confetti from "canvas-confetti";
 

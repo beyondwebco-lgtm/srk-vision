@@ -4,7 +4,7 @@ export default function ServicesMarquee() {
   const items = [
     "COLOUR CORRECTION",
     "HIGH END RETOUCH",
-    "SOCIAL MEDIA POST DESIGNING",
+    "SOCIAL MEDIA POSTING DESIGNING",
     "IMAGE CULLING SELECTION",
     "PROFESSIONAL ALBUM DESIGNING",
   ];
