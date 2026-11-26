@@ -12,10 +12,11 @@ export default function AboutSection() {
             <div className="relative w-full max-w-[580px] p-2.5 sm:p-3 bg-[#F8F5F0] rounded-[22px] border border-[#E8CDB4] shadow-sm">
               <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[16px] bg-[#EDE9E2]">
                 <Image
-                  src="/assets/about-workstation.jpg"
+                  src="/assets/about-workstation.webp"
                   alt="SRK Visions Creative Studio Photo Editing Workstation"
                   fill
-                  className="object-cover object-center"
+                  priority
+                  className="object-cover object-[center_38%]"
                   sizes="(max-width: 1024px) 100vw, 50vw"
                 />
               </div>
