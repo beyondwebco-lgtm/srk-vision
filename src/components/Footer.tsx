@@ -1,10 +1,24 @@
 import React from "react";
 import Link from "next/link";
-import { STUDIO_INFO, SERVICES } from "@/data/content";
+import { STUDIO_INFO } from "@/data/content";
 import { Phone, Mail, MapPin } from "lucide-react";
 import { InstagramIcon } from "@/components/InstagramIcon";
 
 export default function Footer() {
+  const quickLinks = [
+    { label: "Portfolio", href: "/portfolio" },
+    { label: "Services", href: "/services" },
+    { label: "About", href: "/about" },
+    { label: "Contact", href: "/contact" },
+  ];
+
+  const serviceLinks = [
+    { label: "Colour correction", href: "/services/colour-correction" },
+    { label: "Image culling selection", href: "/services/image-culling" },
+    { label: "High end retouch", href: "/services/high-end-retouching" },
+    { label: "Professional album designing", href: "/services/album-designing" },
+  ];
+
   return (
     <footer className="bg-[#6B1E35] text-white pt-20 pb-12 border-t border-[#CE986C]/30">
       <div className="max-w-[1340px] mx-auto px-6 sm:px-10 lg:px-12">
@@ -20,8 +34,8 @@ export default function Footer() {
                 Creative Studio · Est. {STUDIO_INFO.establishedYear}
               </p>
             </div>
-            <p className="font-quicksand text-sm text-white/80 font-medium leading-relaxed max-w-sm">
-              {STUDIO_INFO.tagline} Professional photo post-production and creative editing studio delivering timeless refinement for discerning photographers worldwide.
+            <p className="font-quicksand text-base sm:text-[17px] text-white/90 font-medium italic leading-relaxed max-w-sm">
+              “You Capture the Moment. We Perfect the Story.”
             </p>
             <div className="pt-2">
               <a
@@ -42,36 +56,13 @@ export default function Footer() {
               Quick Links
             </h4>
             <ul className="flex flex-col space-y-2.5 text-sm font-quicksand text-white/80 font-medium">
-              <li>
-                <Link href="/" className="hover:text-white transition-colors">
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link href="/portfolio" className="hover:text-white transition-colors">
-                  Portfolio
-                </Link>
-              </li>
-              <li>
-                <Link href="/services" className="hover:text-white transition-colors">
-                  Services
-                </Link>
-              </li>
-              <li>
-                <Link href="/about" className="hover:text-white transition-colors">
-                  About
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact" className="hover:text-white transition-colors">
-                  Contact
-                </Link>
-              </li>
-              <li>
-                <Link href="/order" className="hover:text-[#CE986C] text-[#CE986C] font-bold transition-colors">
-                  Order Now
-                </Link>
-              </li>
+              {quickLinks.map((item) => (
+                <li key={item.href}>
+                  <Link href={item.href} className="hover:text-[#CE986C] transition-colors">
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -81,13 +72,13 @@ export default function Footer() {
               Services
             </h4>
             <ul className="flex flex-col space-y-2.5 text-sm font-quicksand text-white/80 font-medium">
-              {SERVICES.map((s) => (
-                <li key={s.id}>
+              {serviceLinks.map((item) => (
+                <li key={item.href}>
                   <Link
-                    href={`/services/${s.slug}`}
+                    href={item.href}
                     className="hover:text-[#CE986C] transition-colors"
                   >
-                    {s.title}
+                    {item.label}
                   </Link>
                 </li>
               ))}
@@ -99,24 +90,24 @@ export default function Footer() {
             <h4 className="font-cinzel text-xs uppercase tracking-[0.2em] text-[#CE986C] font-bold">
               Contact
             </h4>
-            <div className="flex flex-col space-y-3 text-sm font-quicksand text-white/80 font-medium">
+            <div className="flex flex-col space-y-3.5 text-sm font-quicksand text-white/80 font-medium">
               <a
-                href={`tel:${STUDIO_INFO.phoneRaw}`}
+                href="tel:+917032424878"
                 className="flex items-center space-x-2.5 hover:text-white transition-colors"
               >
                 <Phone className="w-4 h-4 text-[#CE986C] shrink-0" />
-                <span>{STUDIO_INFO.phoneFormatted}</span>
+                <span>+91 70324 24878</span>
               </a>
               <a
-                href={`mailto:${STUDIO_INFO.email}`}
+                href="mailto:srkvisions05@gmail.com"
                 className="flex items-center space-x-2.5 hover:text-white transition-colors"
               >
                 <Mail className="w-4 h-4 text-[#CE986C] shrink-0" />
-                <span>{STUDIO_INFO.email}</span>
+                <span>srkvisions05@gmail.com</span>
               </a>
-              <div className="flex items-start space-x-2.5 text-white/70">
+              <div className="flex items-start space-x-2.5 text-white/80">
                 <MapPin className="w-4 h-4 text-[#CE986C] shrink-0 mt-1" />
-                <span>{STUDIO_INFO.addressShort}</span>
+                <span className="leading-snug">Mathaji nagar, brahman wadi, Begumpet, Hyderabad, 500016</span>
               </div>
             </div>
           </div>
