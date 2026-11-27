@@ -2,8 +2,41 @@
 
 import React, { useState } from "react";
 import { STUDIO_INFO } from "@/data/content";
-import { Phone, Mail, MapPin, Send, CheckCircle2 } from "lucide-react";
+import { Phone, Mail, MapPin, Send, CheckCircle2, Plus, Minus } from "lucide-react";
 import { InstagramIcon } from "@/components/InstagramIcon";
+
+const FAQS = [
+  {
+    question: "What is the turnaround time for colour correction?",
+    answer:
+      "Delivery time depends on the event, number of photographs and project requirements. Typically, we complete and deliver an entire wedding colour correction project within one week.",
+  },
+  {
+    question: "How will I receive my edited photographs?",
+    answer:
+      "We provide final outputs in whichever format is most convenient for you. You can share RAW files or your Lightroom catalogue, and we will return the professionally edited catalogue or processed images through a Google Drive link.\n\nWe also offer logo and watermark integration and can upload the final photographs directly to your website if required.",
+  },
+  {
+    question: "Can I request a sample edit before placing an order?",
+    answer:
+      "Yes! We provide up to two sample images for colour correction and a sample for high-end retouching.\n\nSince every photographer has a unique shooting and lighting style, we recommend testing our editing quality using your own photographs before placing a complete order.",
+  },
+  {
+    question: "What are your payment terms?",
+    answer:
+      "An advance payment is mandatory to confirm every order. The remaining balance is payable upon completion of the project.",
+  },
+  {
+    question: "Can I request revisions to my editing or album design?",
+    answer:
+      "Absolutely. We provide a PDF preview for album design projects after completing the initial colour correction.\n\nYou can review the design and request necessary changes. Once approved, we complete the final refinements, including skin smoothing, shadow correction and other necessary adjustments, before delivering the final output.",
+  },
+  {
+    question: "Do you offer discounts for regular clients?",
+    answer:
+      "Yes! We offer special discounts and customized pricing for photographers, studios, recurring clients and businesses that provide regular projects.",
+  },
+];
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -15,6 +48,11 @@ export default function ContactPage() {
   });
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
+
+  const toggleFaq = (index: number) => {
+    setOpenFaqIndex((prev) => (prev === index ? null : index));
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -305,6 +343,71 @@ export default function ContactPage() {
                 title="SRK Visions Creative Studio Location"
                 className="w-full h-full"
               />
+            </div>
+          </div>
+        </div>
+
+        {/* Common Questions — FAQ Accordion Section */}
+        <div className="mt-16 pt-12 border-t border-[#E8CDB4]/70">
+          <div className="max-w-[1000px] mx-auto">
+            {/* Header */}
+            <div className="text-center mb-10 sm:mb-12">
+              <span className="text-xs uppercase tracking-[0.25em] text-[#CE986C] font-semibold block mb-2">
+                Common Questions
+              </span>
+              <h2 className="font-cinzel text-2xl sm:text-3xl md:text-4xl font-bold text-[#6B1E35] tracking-wide uppercase">
+                Questions, Answered
+              </h2>
+              <div className="w-16 h-[2px] bg-[#CE986C] mx-auto mt-4" />
+            </div>
+
+            {/* Accordion Container */}
+            <div className="divide-y divide-[#E8CDB4] border-y border-[#E8CDB4] bg-[#F5EEE5]/60 rounded-2xl overflow-hidden">
+              {FAQS.map((faq, index) => {
+                const isOpen = openFaqIndex === index;
+                return (
+                  <div
+                    key={index}
+                    className="transition-colors duration-200 hover:bg-[#F5EEE5]"
+                  >
+                    <button
+                      type="button"
+                      onClick={() => toggleFaq(index)}
+                      aria-expanded={isOpen}
+                      aria-controls={`faq-answer-${index}`}
+                      id={`faq-question-${index}`}
+                      className="w-full py-5 px-6 sm:px-8 flex items-center justify-between text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-[#6B1E35] focus-visible:ring-inset transition-colors"
+                    >
+                      <span className="font-cinzel font-semibold text-base sm:text-lg text-[#6B1E35] pr-6">
+                        {faq.question}
+                      </span>
+                      <span className="shrink-0 w-8 h-8 rounded-full border border-[#CE986C]/40 flex items-center justify-center text-[#6B1E35] bg-white/70 transition-all duration-300">
+                        {isOpen ? (
+                          <Minus className="w-4 h-4 text-[#6B1E35]" />
+                        ) : (
+                          <Plus className="w-4 h-4 text-[#CE986C]" />
+                        )}
+                      </span>
+                    </button>
+                    <div
+                      id={`faq-answer-${index}`}
+                      role="region"
+                      aria-labelledby={`faq-question-${index}`}
+                      className={`grid transition-[grid-template-rows,opacity] duration-300 ease-out ${
+                        isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                      }`}
+                    >
+                      <div className="overflow-hidden">
+                        <div className="px-6 sm:px-8 pb-6 pt-1 text-sm sm:text-base text-[#727272] font-quicksand leading-relaxed space-y-3">
+                          {faq.answer.split("\n\n").map((paragraph, pIdx) => (
+                            <p key={pIdx}>{paragraph}</p>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
