@@ -20,8 +20,8 @@ export default function Navbar() {
   return (
     <>
       {/* Floating Capsule Navbar Header */}
-      <header className="fixed top-2.5 sm:top-3.5 left-0 right-0 z-50 flex justify-center px-4 pointer-events-none">
-        <div className="pointer-events-auto w-full max-w-[1340px] h-[64px] sm:h-[72px] md:h-[78px] bg-[#F6EFE6]/95 backdrop-blur-md rounded-full border border-[#E8CDB4] shadow-[0_4px_20px_rgba(107,30,53,0.06)] px-5 sm:px-8 md:px-10 flex items-center justify-between transition-all duration-300">
+      <header className="fixed top-2.5 sm:top-3 left-0 right-0 z-50 flex justify-center px-4 pointer-events-none">
+        <div className="pointer-events-auto w-full max-w-[1100px] h-[52px] sm:h-[56px] md:h-[60px] bg-[#F6EFE6]/65 backdrop-blur-xl backdrop-saturate-150 rounded-full border border-white/70 shadow-[0_8px_30px_rgba(107,30,53,0.06),inset_0_1px_1px_rgba(255,255,255,0.9)] px-4 sm:px-6 md:px-8 flex items-center justify-between transition-all duration-300">
           
           {/* Left: Original SRK Visions Logo */}
           <Link
@@ -30,7 +30,7 @@ export default function Navbar() {
             className="flex items-center space-x-2 group focus:outline-none shrink-0"
             aria-label="SRK Visions Home"
           >
-            <div className="relative w-[34px] h-[26px]">
+            <div className="relative w-[28px] h-[22px]">
               <Image
                 src="/assets/srk-logo.png"
                 alt="SRK Visions"
@@ -39,13 +39,13 @@ export default function Navbar() {
                 priority
               />
             </div>
-            <span className="font-cinzel text-sm sm:text-base font-bold text-[#171717] tracking-wider uppercase hidden sm:inline-block">
+            <span className="font-cinzel text-xs sm:text-[14px] font-bold text-[#171717] tracking-wider uppercase hidden sm:inline-block">
               SRK Visions
             </span>
           </Link>
 
           {/* Centre: Nav links with diamond separators (Exact Reference) */}
-          <nav className="hidden md:flex items-center space-x-6 lg:space-x-8 text-[15px] lg:text-[16px] text-[#727272] font-quicksand font-medium">
+          <nav className="hidden md:flex items-center space-x-5 lg:space-x-7 text-[13.5px] lg:text-[14.5px] text-[#555555] font-quicksand font-medium">
             {navLinks.map((item) => {
               const isActive = pathname === item.href;
               return (
@@ -53,13 +53,13 @@ export default function Navbar() {
                   <Link
                     href={item.href}
                     className={`transition-colors duration-200 hover:text-[#6B1E35] ${
-                      isActive ? "text-[#6B1E35] font-semibold" : ""
+                      isActive ? "text-[#6B1E35] font-bold" : ""
                     }`}
                   >
                     {item.label}
                   </Link>
                   {/* Muted beige diamond separator */}
-                  <span className="text-[#CE986C] text-[10px] select-none opacity-80">
+                  <span className="text-[#CE986C] text-[8px] select-none opacity-80">
                     ◆
                   </span>
                 </React.Fragment>
@@ -71,7 +71,7 @@ export default function Navbar() {
           <div className="flex items-center space-x-3">
             <Link
               href="/order"
-              className="inline-flex items-center justify-center bg-[#6B1E35] hover:bg-[#843B43] text-white font-quicksand font-semibold text-xs sm:text-sm px-5 sm:px-7 py-2 sm:py-2.5 rounded-full shadow-sm transition-all duration-300"
+              className="inline-flex items-center justify-center bg-[#6B1E35] hover:bg-[#843B43] text-white font-quicksand font-semibold text-xs sm:text-[13px] px-4 sm:px-5 py-1.5 sm:py-2 rounded-full shadow-sm transition-all duration-300 hover:scale-[1.02]"
             >
               Order now
             </Link>
@@ -80,7 +80,7 @@ export default function Navbar() {
             <button
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-1.5 text-[#6B1E35] focus:outline-none"
+              className="md:hidden p-1 text-[#6B1E35] focus:outline-none"
               aria-label="Toggle menu"
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -91,7 +91,7 @@ export default function Navbar() {
 
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 z-40 bg-[#F6EFE6]/98 backdrop-blur-xl flex flex-col justify-between p-8 pt-24 text-[#6B1E35] md:hidden">
+        <div className="fixed inset-0 z-40 bg-[#F6EFE6]/90 backdrop-blur-2xl flex flex-col justify-between p-8 pt-24 text-[#6B1E35] md:hidden">
           <div className="flex flex-col space-y-6">
             <span className="text-xs uppercase tracking-widest text-[#CE986C] font-semibold">
               Navigation

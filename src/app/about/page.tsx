@@ -14,21 +14,25 @@ const TEAM_MEMBERS = [
   {
     name: "Aakash",
     role: "Managing Department",
+    image: "/assets/team/aakash.webp",
     bio: "He oversees order processing, workflow management, and timely project updates. He ensures smooth coordination, efficient operations, and seamless communication with clients.",
   },
   {
     name: "Karthik",
     role: "Lead Retouching Artist",
+    image: "/assets/team/karthik.webp",
     bio: "He leads the team in color correction, high-end retouching, With strong experience and leadership skills, he ensures quality and consistency in every project.",
   },
   {
     name: "Amer",
     role: "Digital Imaging Art",
+    image: "/assets/team/amer.webp",
     bio: "He leads the team in professional album designing and social media post editing, bringing experience and creative expertise to every project. His strong leadership ensures smooth teamwork, consistent quality, and outstanding results.",
   },
   {
     name: "Deva",
     role: "Final Review",
+    image: "/assets/team/deva.webp",
     bio: "He is responsible for cross-checking completed photographs and identifying any corrections needed. He ensures every image meets our quality expectations before it is approved for delivery.",
   },
 ];
@@ -77,24 +81,24 @@ export default function AboutPage() {
       <div className="max-w-[1340px] mx-auto px-6 sm:px-10 lg:px-12 pb-24">
         {/* Founder & Creative Director Section */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center mb-28">
-          {/* Left Column: Workstation photo */}
-          <div className="lg:col-span-6 flex justify-center">
-            <div className="relative w-full max-w-[580px] p-2.5 sm:p-3 bg-[#F8F5F0] rounded-[22px] border border-[#E8CDB4] shadow-sm">
-              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[16px] bg-[#EDE9E2]">
+          {/* Left Column: Shaik Sharuk Portrait */}
+          <div className="lg:col-span-5 flex justify-center">
+            <div className="relative w-full max-w-[460px] p-2.5 sm:p-3 bg-[#F8F5F0] rounded-[24px] border border-[#E8CDB4] shadow-sm">
+              <div className="relative aspect-[3/4] w-full overflow-hidden rounded-[18px] bg-[#EDE9E2]">
                 <Image
-                  src="/assets/about-workstation.webp"
+                  src="/assets/team/shaik-sharuk.webp"
                   alt="Shaik Sharuk - Founder & Creative Director SRK Visions"
                   fill
                   priority
-                  className="object-cover object-[center_38%]"
-                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover object-top"
+                  sizes="(max-width: 1024px) 100vw, 40vw"
                 />
               </div>
             </div>
           </div>
 
           {/* Right Column: Founder Story */}
-          <div className="lg:col-span-6 flex flex-col justify-center space-y-6">
+          <div className="lg:col-span-7 flex flex-col justify-center space-y-6">
             <div>
               <span className="inline-block px-4 py-1.5 rounded-full bg-[#F5EEE5] text-[#CE986C] border border-[#E8CDB4]/60 text-xs sm:text-[13px] font-quicksand font-bold tracking-widest uppercase">
                 EST. 2021
@@ -132,18 +136,24 @@ export default function AboutPage() {
             {TEAM_MEMBERS.map((member, index) => (
               <div
                 key={index}
-                className="bg-white rounded-[22px] p-7 sm:p-8 border border-[#E8CDB4] shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between group"
+                className="bg-white rounded-[22px] p-5 sm:p-6 border border-[#E8CDB4] shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between group"
               >
                 <div>
-                  <div className="w-14 h-14 rounded-full bg-[#F5EEE5] border border-[#E8CDB4] flex items-center justify-center text-[#6B1E35] font-cinzel text-xl font-bold mb-6 group-hover:bg-[#6B1E35] group-hover:text-white transition-colors">
-                    {member.name.charAt(0)}
+                  <div className="relative aspect-[4/5] w-full overflow-hidden rounded-[16px] bg-[#EDE9E2] border border-[#E8CDB4]/60 mb-5">
+                    <Image
+                      src={member.image}
+                      alt={member.name}
+                      fill
+                      className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                    />
                   </div>
 
                   <h3 className="font-cinzel text-xl sm:text-[22px] font-bold text-[#6B1E35] mb-1">
                     {member.name}
                   </h3>
 
-                  <p className="font-quicksand text-xs sm:text-[13px] uppercase tracking-wider text-[#CE986C] font-bold mb-4">
+                  <p className="font-quicksand text-xs sm:text-[13px] uppercase tracking-wider text-[#CE986C] font-bold mb-3">
                     {member.role}
                   </p>
 
