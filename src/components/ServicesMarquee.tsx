@@ -3,9 +3,8 @@ import React from "react";
 export default function ServicesMarquee() {
   const items = [
     "COLOUR CORRECTION",
-    "HIGH END RETOUCH",
-    "SOCIAL MEDIA POSTING DESIGNING",
-    "IMAGE CULLING SELECTION",
+    "IMAGE CULLING & SELECTION",
+    "HIGH-END RETOUCH",
     "PROFESSIONAL ALBUM DESIGNING",
   ];
 

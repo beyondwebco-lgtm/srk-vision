@@ -13,7 +13,7 @@ export default function ServicesPage() {
           Precision Post-Production
         </h1>
         <p className="mt-3 text-sm sm:text-base text-[#727272] max-w-2xl mx-auto font-medium">
-          Explore our five core photo post-production disciplines crafted specifically for wedding photographers, portrait creators, and luxury studios.
+          Explore our four core photo post-production disciplines crafted specifically for wedding photographers, portrait creators, and luxury studios.
         </p>
       </div>
 

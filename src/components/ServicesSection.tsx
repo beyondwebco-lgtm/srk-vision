@@ -2,12 +2,11 @@ import React from "react";
 import Link from "next/link";
 import { 
   Palette, 
-  Sparkles, 
   Filter, 
+  Sparkles, 
   BookOpen, 
   ArrowUpRight 
 } from "lucide-react";
-import { InstagramIcon } from "@/components/InstagramIcon";
 
 const SERVICES_DATA = [
   {
@@ -20,14 +19,6 @@ const SERVICES_DATA = [
   },
   {
     id: "02",
-    slug: "high-end-retouching",
-    title: "High-End Retouch",
-    icon: (props: { className?: string }) => <Sparkles {...props} />,
-    description:
-      "Our high-end retouching process focuses on refining skin texture, removing blemishes, correcting imperfections, and enhancing facial details with precision. We carefully balance skin tones and perfect every detail while preserving natural beauty for a flawless, realistic, and luxurious finish.",
-  },
-  {
-    id: "03",
     slug: "image-culling",
     title: "Image Culling & Selection",
     icon: (props: { className?: string }) => <Filter {...props} />,
@@ -35,15 +26,15 @@ const SERVICES_DATA = [
       "Our professional image culling process involves carefully reviewing every photograph to identify the best moments, expressions, compositions, and overall image quality. We eliminate duplicates, blurred shots and unwanted images while selecting the finest photographs to ensure a consistent, well-organized final collection.",
   },
   {
-    id: "04",
-    slug: "instagram-designing",
-    title: "Instagram Social Media Postings",
-    icon: (props: { className?: string }) => <InstagramIcon {...props} />,
+    id: "03",
+    slug: "high-end-retouching",
+    title: "High-End Retouch",
+    icon: (props: { className?: string }) => <Sparkles {...props} />,
     description:
-      "We create visually stunning Instagram posts that tell a unique story through creative layouts, elegant designs, and thoughtful storytelling. Every post is carefully crafted to capture emotions, highlight memorable moments, and deliver a premium visual experience.",
+      "Our high-end retouching process focuses on refining skin texture, removing blemishes, correcting imperfections, and enhancing facial details with precision. We carefully balance skin tones and perfect every detail while preserving natural beauty for a flawless, realistic, and luxurious finish.",
   },
   {
-    id: "05",
+    id: "04",
     slug: "album-designing",
     title: "Professional Album Designing",
     icon: (props: { className?: string }) => <BookOpen {...props} />,
@@ -67,14 +58,14 @@ export default function ServicesSection() {
           <div className="w-16 h-[2px] bg-[#CE986C] mx-auto mt-4" />
         </div>
 
-        {/* 5 Service Cards Grid: 3 in top row, 2 centered in bottom row */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {SERVICES_DATA.slice(0, 3).map((s) => {
+        {/* 4 Service Cards in a Balanced 2 × 2 Grid on Desktop, 1 Column on Mobile */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-[1180px] mx-auto">
+          {SERVICES_DATA.map((s) => {
             const Icon = s.icon;
             return (
               <div
                 key={s.id}
-                className="bg-[#F8F5F0] rounded-[20px] p-8 border border-[#E8CDB4] shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between group"
+                className="bg-[#F8F5F0] rounded-[22px] p-8 sm:p-9 border border-[#E8CDB4] shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between group"
               >
                 <div>
                   <div className="w-14 h-14 rounded-full bg-[#F5EEE5] border border-[#E8CDB4] flex items-center justify-center text-[#6B1E35] mb-6 group-hover:bg-[#6B1E35] group-hover:text-white transition-colors duration-300">
@@ -101,51 +92,7 @@ export default function ServicesSection() {
 
                   <Link
                     href={`/order?service=${s.slug}`}
-                    className="text-xs uppercase tracking-wider px-3.5 py-1.5 rounded-full bg-[#6B1E35] text-white hover:bg-[#843B43] font-semibold transition-colors"
-                  >
-                    Enquire
-                  </Link>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-
-        {/* Second Row: 2 cards centered */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-[880px] mx-auto mt-8">
-          {SERVICES_DATA.slice(3, 5).map((s) => {
-            const Icon = s.icon;
-            return (
-              <div
-                key={s.id}
-                className="bg-[#F8F5F0] rounded-[20px] p-8 border border-[#E8CDB4] shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between group"
-              >
-                <div>
-                  <div className="w-14 h-14 rounded-full bg-[#F5EEE5] border border-[#E8CDB4] flex items-center justify-center text-[#6B1E35] mb-6 group-hover:bg-[#6B1E35] group-hover:text-white transition-colors duration-300">
-                    <Icon className="w-6 h-6" />
-                  </div>
-
-                  <h3 className="font-cinzel text-xl sm:text-[22px] font-bold text-[#6B1E35] mb-3 leading-snug">
-                    {s.title}
-                  </h3>
-
-                  <p className="font-quicksand text-sm sm:text-[15px] text-[#727272] leading-[1.75] font-medium">
-                    {s.description}
-                  </p>
-                </div>
-
-                <div className="pt-6 mt-6 border-t border-[#E8CDB4]/50 flex items-center justify-between">
-                  <Link
-                    href={`/services/${s.slug}`}
-                    className="text-xs uppercase tracking-widest text-[#6B1E35] font-bold inline-flex items-center hover:text-[#CE986C] transition-colors"
-                  >
-                    <span>View Details</span>
-                    <ArrowUpRight className="ml-1 w-3.5 h-3.5" />
-                  </Link>
-
-                  <Link
-                    href={`/order?service=${s.slug}`}
-                    className="text-xs uppercase tracking-wider px-3.5 py-1.5 rounded-full bg-[#6B1E35] text-white hover:bg-[#843B43] font-semibold transition-colors"
+                    className="text-xs uppercase tracking-wider px-4 py-2 rounded-full bg-[#6B1E35] text-white hover:bg-[#843B43] font-semibold transition-colors"
                   >
                     Enquire
                   </Link>

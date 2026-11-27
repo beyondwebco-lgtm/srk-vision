@@ -20,7 +20,7 @@ export const SERVICES: ServiceItem[] = [
     id: "01",
     slug: "colour-correction",
     number: "01",
-    title: "Professional Colour Correction",
+    title: "Colour Correction",
     shortDesc: "Balancing exposure, contrast, white balance, and skin tones with batch consistency.",
     fullDesc:
       "Our colour correction process enhances every image by adjusting exposure, brightness, contrast, white balance, and colour tones. We refine natural skin tones, balance highlights and shadows, and create a consistent visual finish across complete photo collections.",
@@ -42,32 +42,8 @@ export const SERVICES: ServiceItem[] = [
   },
   {
     id: "02",
-    slug: "high-end-retouching",
-    number: "02",
-    title: "High-End Retouching",
-    shortDesc: "Flawless skin texture, blemish removal, and realistic portrait perfection.",
-    fullDesc:
-      "Our high-end retouching process focuses on refining skin texture, removing blemishes, correcting imperfections, and enhancing facial details with precision. We carefully balance skin tones and perfect every detail while preserving natural beauty for a flawless, realistic, and luxurious finish.",
-    heroImage: "https://images.unsplash.com/photo-1509967419530-da38b4704bc6?q=80&w=1200&auto=format&fit=crop",
-    features: [
-      "Natural skin retouching",
-      "Blemish removal",
-      "Facial detail enhancement",
-      "Background cleanup",
-      "Portrait refinement",
-    ],
-    deliverables: [
-      "Frequency separation skin texture preservation",
-      "Dodge & Burn micro-contouring",
-      "Eye, iris, and hair stray refinement",
-      "Garment crease and subtle distraction elimination"
-    ],
-    idealFor: "Beauty editorials, bridal close-ups, celebrity portraits, magazine covers, and luxury commercial campaigns."
-  },
-  {
-    id: "03",
     slug: "image-culling",
-    number: "03",
+    number: "02",
     title: "Image Culling & Selection",
     shortDesc: "Curating the finest moments, eliminating blur and duplicates from large galleries.",
     fullDesc:
@@ -89,33 +65,33 @@ export const SERVICES: ServiceItem[] = [
     idealFor: "Busy destination wedding photographers, documentary event shooters, and studios handling multi-day celebrations."
   },
   {
-    id: "04",
-    slug: "instagram-designing",
-    number: "04",
-    title: "Instagram & Social Media Designing",
-    shortDesc: "Seamless carousels, editorial story layouts, and impactful visual branding.",
+    id: "03",
+    slug: "high-end-retouching",
+    number: "03",
+    title: "High-End Retouch",
+    shortDesc: "Flawless skin texture, blemish removal, and realistic portrait perfection.",
     fullDesc:
-      "We create visually stunning Instagram posts that tell a unique story through creative layouts, elegant designs, and thoughtful storytelling. Every post is carefully crafted to capture emotions, highlight memorable moments, and deliver a premium visual experience.",
-    heroImage: "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop",
+      "Our high-end retouching process focuses on refining skin texture, removing blemishes, correcting imperfections, and enhancing facial details with precision. We carefully balance skin tones and perfect every detail while preserving natural beauty for a flawless, realistic, and luxurious finish.",
+    heroImage: "https://images.unsplash.com/photo-1509967419530-da38b4704bc6?q=80&w=1200&auto=format&fit=crop",
     features: [
-      "Instagram carousel designs",
-      "Photography portfolio posts",
-      "Wedding storytelling layouts",
-      "Social media creative designing",
-      "Consistent visual branding",
+      "Natural skin retouching",
+      "Blemish removal",
+      "Facial detail enhancement",
+      "Background cleanup",
+      "Portrait refinement",
     ],
     deliverables: [
-      "Seamless panoramic carousel splits",
-      "Editorial typography accents & subtle framing",
-      "High-contrast feed optimization for mobile displays",
-      "Custom grid planning and aesthetic consistency"
+      "Frequency separation skin texture preservation",
+      "Dodge & Burn micro-contouring",
+      "Eye, iris, and hair stray refinement",
+      "Garment crease and subtle distraction elimination"
     ],
-    idealFor: "Photographers seeking viral reach, wedding creators building an alluring digital brand, and luxury lifestyle creators."
+    idealFor: "Beauty editorials, bridal close-ups, celebrity portraits, magazine covers, and luxury commercial campaigns."
   },
   {
-    id: "05",
+    id: "04",
     slug: "album-designing",
-    number: "05",
+    number: "04",
     title: "Professional Album Designing",
     shortDesc: "Custom luxury wedding albums, distraction removal, and print-ready spreads.",
     fullDesc:
