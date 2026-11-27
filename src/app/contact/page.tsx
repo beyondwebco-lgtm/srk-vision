@@ -99,17 +99,23 @@ export default function ContactPage() {
                   </div>
                 </a>
 
-                <div className="flex items-start space-x-3 p-3 bg-white rounded-xl border border-[#E8CDB4]/60">
-                  <MapPin className="w-5 h-5 text-[#6B1E35] shrink-0 mt-0.5" />
+                <a
+                  href={STUDIO_INFO.googleMapsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-start space-x-3 p-3 bg-white rounded-xl border border-[#E8CDB4]/60 hover:border-[#6B1E35] transition-colors group cursor-pointer"
+                  title="Click to view location on Google Maps"
+                >
+                  <MapPin className="w-5 h-5 text-[#6B1E35] shrink-0 mt-0.5 group-hover:text-[#CE986C] transition-colors" />
                   <div>
                     <span className="text-[10px] uppercase tracking-wider text-[#CE986C] font-bold block">
-                      Studio Address
+                      Studio Address (View on Google Maps)
                     </span>
-                    <span className="text-xs text-[#171717] leading-relaxed">
+                    <span className="text-xs text-[#171717] leading-relaxed group-hover:text-[#6B1E35] transition-colors">
                       {STUDIO_INFO.address}
                     </span>
                   </div>
-                </div>
+                </a>
 
                 <a
                   href={STUDIO_INFO.instagramUrl}
@@ -255,6 +261,51 @@ export default function ContactPage() {
                 </div>
               </form>
             )}
+          </div>
+        </div>
+
+        {/* Google Maps Location Section */}
+        <div className="mt-14 pt-10 border-t border-[#E8CDB4]/70">
+          <div className="bg-[#F5EEE5] p-6 sm:p-8 rounded-[24px] border border-[#E8CDB4] shadow-sm">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+              <div>
+                <span className="text-xs uppercase tracking-[0.25em] text-[#CE986C] font-semibold block mb-1">
+                  STUDIO LOCATION
+                </span>
+                <h2 className="font-cinzel text-2xl sm:text-3xl font-bold text-[#6B1E35]">
+                  Find Our Creative Studio
+                </h2>
+                <p className="font-quicksand text-xs sm:text-sm text-[#727272] font-medium mt-1">
+                  {STUDIO_INFO.address}
+                </p>
+              </div>
+
+              {/* Get Directions Button */}
+              <a
+                href={STUDIO_INFO.googleMapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center space-x-2 px-6 py-2.5 rounded-full bg-[#CE986C] hover:bg-[#b8855b] text-white text-xs sm:text-sm font-quicksand font-bold uppercase tracking-wider shadow-sm transition-all duration-300 hover:scale-[1.02] shrink-0 self-start sm:self-center"
+              >
+                <MapPin className="w-4 h-4" />
+                <span>Get Directions</span>
+              </a>
+            </div>
+
+            {/* Responsive Google Maps Iframe: 100% width, ~400px desktop, ~300px mobile */}
+            <div className="w-full h-[300px] md:h-[400px] rounded-[18px] border border-[#E8CDB4] overflow-hidden shadow-inner bg-[#EDE9E2]">
+              <iframe
+                src="https://maps.google.com/maps?q=SRK+Visions,+Brahman+Wadi,+Begumpet,+Hyderabad,+Telangana+500016&t=&z=16&ie=UTF8&iwloc=&output=embed"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="SRK Visions Creative Studio Location"
+                className="w-full h-full"
+              />
+            </div>
           </div>
         </div>
       </div>

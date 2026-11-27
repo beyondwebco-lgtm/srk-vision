@@ -426,7 +426,7 @@ export const STUDIO_INFO = {
   instagramHandle: "@srk.visions",
   instagramUrl: "https://www.instagram.com/srk.visions/",
   whatsappUrl: "https://wa.me/917032424878",
-  googleMapsUrl: "https://maps.google.com/?q=Mathaji+Nagar+Begumpet+Hyderabad+500016",
+  googleMapsUrl: "https://maps.app.goo.gl/5E6Vprhhh35Jcdb27",
   stats: [
     { label: "Company Collaborations", value: "25+", note: "Leading wedding & studio partners" },
     { label: "Customer Satisfaction", value: "99.9%", note: "Verified client feedback" },
