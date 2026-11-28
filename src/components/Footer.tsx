@@ -118,6 +118,14 @@ export default function Footer() {
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs font-quicksand text-white/60 font-medium space-y-3 sm:space-y-0">
           <p>© 2026 {STUDIO_INFO.name}. All Rights Reserved.</p>
           <div className="flex items-center space-x-6">
+            <a
+              href="https://www.beyondwebco.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white transition-colors"
+            >
+              Made by BeyondWebCo
+            </a>
             <Link href="/privacy-policy" className="hover:text-white transition-colors">
               Privacy Policy
             </Link>

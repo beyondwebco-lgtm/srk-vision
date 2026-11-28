@@ -1,36 +1,80 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SRK Visions
 
-## Getting Started
+The public website for **SRK Visions**, a Hyderabad-based photo post-production studio. It presents the studio's services, portfolio, client workflow, testimonials, and a project-brief form for photographers and studios.
 
-First, run the development server:
+## What the site includes
+
+- Service pages for colour correction, image culling and selection, high-end retouching, and album design
+- Portfolio, before-and-after, testimonials, Instagram, about, contact, privacy-policy, and order pages
+- A responsive global navigation, footer, and WhatsApp contact shortcut
+- SEO metadata, sitemap, and robots configuration
+- A project-brief endpoint at `POST /api/order`
+
+## Technology
+
+- Next.js 16 with the App Router
+- React 19 and TypeScript
+- Tailwind CSS 4
+- Framer Motion for animation
+- Lucide React icons
+
+## Local development
+
+### Prerequisites
+
+- Node.js 20.9 or newer
+- npm
+
+### Run the project
 
 ```bash
+git clone https://github.com/beyondwebco-lgtm/srk-vision.git
+cd srk-vision
+npm ci
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Available commands
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Command | Purpose |
+| --- | --- |
+| `npm run dev` | Start the local development server |
+| `npm run lint` | Run ESLint checks |
+| `npm run build` | Produce an optimized production build |
+| `npm run start` | Serve a production build locally |
 
-## Learn More
+## Project structure
 
-To learn more about Next.js, take a look at the following resources:
+```text
+src/
+  app/              Routes, layout, metadata, and the order API route
+  components/       Reusable page sections and shared UI
+  data/content.ts   Studio details and editable site content
+public/assets/      Brand images, team photos, and portfolio assets
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Editing content
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Most business-facing copy, services, testimonials, portfolio items, workflow steps, and studio contact details live in [`src/data/content.ts`](src/data/content.ts). Update that file when changing studio information so it stays consistent across pages.
 
-## Deploy on Vercel
+The footer is in [`src/components/Footer.tsx`](src/components/Footer.tsx) and includes the BeyondWebCo attribution link.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Order brief endpoint
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The order form sends requests to `POST /api/order`. The route currently validates the customer's name, email, and phone number, then records the structured brief to server logs and returns an order ID. It does **not** send email yet.
+
+The route contains a commented Resend integration placeholder. Before enabling delivery, configure a valid sender domain and add `RESEND_API_KEY` to the deployment environment. Never commit environment files or API keys.
+
+## Images and assets
+
+Project-owned assets are under `public/assets`. Some editorial and demonstration images are served from Unsplash; `next.config.ts` explicitly permits that remote image host. Confirm image rights before replacing sample imagery or launching a revised site.
+
+## Deployment
+
+Deploy to any host that supports Next.js (for example, Vercel). Configure production environment variables in the host dashboard, run `npm run build`, and connect the deployment to the `main` branch for continuous delivery.
+
+## Credits
+
+Built by [BeyondWebCo](https://www.beyondwebco.com/).
